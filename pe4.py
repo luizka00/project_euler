@@ -3,26 +3,22 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 """
 
 
-def find_largest():
+def is_palindrome(n):
+    # Check if n is a palindrome by comparing it to its reverse
+    return str(n) == str(n)[::-1]
 
-    largest= []
-    """for each pallindrome check if it's a product of 3 digit numbers"""
-    candidate= list(str(998001))
-    while ( 100000 <= candidate <= 998001):
-        if (candidate[0] == candidate[5] and candidate[1] == candidate[4] and candidate[2] == candidate[3]):
-            check_if_product(candidate)
-        
-        
-
-
+def largest_palindrome_product():
+    max_palindrome = 0
     
-def check_if_product():
-    pass
+    # Iterate through all 3-digit numbers
+    for i in range(999, 99, -1):
+        for j in range(i, 99, -1):  # Start j from i to avoid repeating pairs
+            product = i * j
+            if is_palindrome(product) and product > max_palindrome:
+                max_palindrome = product
+                
+    return max_palindrome
 
-
-
-largest_number= 998001
-
-print(list(str(largest_number)))
-candidate= list(str(998001))
-print(type(int(candidate[0])))
+# Find the largest palindrome made from the product of two 3-digit numbers
+result = largest_palindrome_product()
+print(result)
